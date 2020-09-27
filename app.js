@@ -4,7 +4,7 @@ const back = document.getElementById("back");
 const forward = document.getElementById("forward");
 const carousel = document.getElementById("carousel");
 const circles = document.querySelector(".circles");
-const pictures = document.querySelector('.pictures');
+const pictures = document.querySelector(".pictures");
 
 carousel.addEventListener("click", rotate);
 carousel.addEventListener("mouseout", function () {
@@ -19,37 +19,32 @@ carousel.addEventListener("mouseover", function () {
   circles.style.opacity = "1";
 });
 
-circles.addEventListener("click", whiten);
-
+circles.addEventListener("click", updateCircle);
 
 //functions
-function rotate(choice) {
-  if (choice.target === forward) {
-    reset();
+function rotate(e) {
+  if (e.target === forward) {
+    resetCircle();
     resetImg();
     x += 1;
     if (x >= arr.length) {
       x = 0;
-      document.getElementById(`picture-${arr[x]}`).style.display = 'block';
-      document.getElementById(`${arr[x]}`).style.background = "white";
+      updateImg();
     }
-    document.getElementById(`picture-${arr[x]}`).style.display = 'block';
-    document.getElementById(`${arr[x]}`).style.background = "white";
-  } else if (choice.target === back) {
-    reset();
+    updateImg();
+  } else if (e.target === back) {
+    resetCircle();
     resetImg();
     x -= 1;
     if (x < 0) {
       x = arr.length - 1;
-      document.getElementById(`picture-${arr[x]}`).style.display = 'block';
-      document.getElementById(`${arr[x]}`).style.background = "white";
+      updateImg();
     }
-    document.getElementById(`picture-${arr[x]}`).style.display = 'block';
-    document.getElementById(`${arr[x]}`).style.background = "white";
+    updateImg();
   }
 }
 
-function whiten(e) {
+function updateCircle(e) {
   if (
     e.target.id === arr[0] ||
     e.target.id === arr[1] ||
@@ -57,25 +52,32 @@ function whiten(e) {
     e.target.id === arr[3] ||
     e.target.id === arr[4]
   ) {
-    reset();
+    resetCircle();
     resetImg();
     x = arr.indexOf(e.target.id);
-    document.getElementById(`picture-${arr[x]}`).style.display = 'block';
-
+    document.getElementById(`picture-${arr[x]}`).style.transform = "scale(1)";
+    document.getElementById(`picture-${arr[x]}`).style.opacity = "1";
     e.target.style.background = "white";
   }
 }
 
-function reset() {
+function resetCircle() {
   let list = circles.children;
   for (let i = 0; i < list.length; i++) {
     list[i].style.background = "gray";
   }
 }
 
-function resetImg(){
+function resetImg() {
   let list = pictures.children;
-  for (let i = 0; i < list.length; i++){
-    list[i].style.display = 'none';
+  for (let i = 0; i < list.length; i++) {
+    list[i].style.opacity = "0";
+    list[i].style.transform = "scale(1.1)";
   }
+}
+
+function updateImg() {
+  document.getElementById(`picture-${arr[x]}`).style.transform = "scale(1)";
+  document.getElementById(`picture-${arr[x]}`).style.opacity = "1";
+  document.getElementById(`${arr[x]}`).style.background = "white";
 }

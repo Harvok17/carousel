@@ -19,7 +19,7 @@ body {
   margin: 20px auto;
   height: 250px;
   width: 375px;
-  background:black;
+  background: black;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -89,12 +89,16 @@ body {
   height: 15%;
   transition: all ease 1s;
 }
-.pictures{
+.pictures {
   height: 100%;
   width: 100%;
   position: relative;
 }
-#picture-a,#picture-b,#picture-c,#picture-d,#picture-e{
+#picture-a,
+#picture-b,
+#picture-c,
+#picture-d,
+#picture-e {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -103,27 +107,31 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  transition: all ease 0.3s;
 }
-#picture-a{
+#picture-a {
   background-image: url(/image/a.jpg);
 }
-#picture-b{
+#picture-b {
   background-image: url(/image/b.jpg);
 }
-#picture-c{
+#picture-c {
   background-image: url(/image/c.jpg);
 }
-#picture-d{
+#picture-d {
   background-image: url(/image/d.jpg);
 }
-#picture-e{
+#picture-e {
   background-image: url(/image/e.jpg);
 }
 
-#picture-b,#picture-c,#picture-d,#picture-e{
- display: none;
+#picture-b,
+#picture-c,
+#picture-d,
+#picture-e {
+  opacity: 0;
+  translate: scale(1.1);
 }
-
 
 @media screen and (min-width: 600px) {
   #carousel {
