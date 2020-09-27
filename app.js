@@ -6,6 +6,17 @@ const carousel = document.getElementById("carousel");
 const circles = document.querySelector(".circles");
 
 carousel.addEventListener("click", rotate);
+carousel.addEventListener("mouseout", function () {
+  back.style.opacity = "0";
+  forward.style.opacity = "0";
+  circles.style.opacity = "0";
+});
+
+carousel.addEventListener("mouseover", function () {
+  back.style.opacity = "1";
+  forward.style.opacity = "1";
+  circles.style.opacity = "1";
+});
 
 circles.addEventListener("click", whiten);
 
