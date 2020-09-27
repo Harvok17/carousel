@@ -19,10 +19,7 @@ body {
   margin: 20px auto;
   height: 250px;
   width: 375px;
-  background-image: url(/image/a.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  background:black;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -82,13 +79,51 @@ body {
   background: gray;
 }
 .circles {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: space-around;
   width: 50%;
-  height: 30%;
-  align-items: center;
+  height: 15%;
   transition: all ease 1s;
 }
+.pictures{
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+#picture-a,#picture-b,#picture-c,#picture-d,#picture-e{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#picture-a{
+  background-image: url(/image/a.jpg);
+}
+#picture-b{
+  background-image: url(/image/b.jpg);
+}
+#picture-c{
+  background-image: url(/image/c.jpg);
+}
+#picture-d{
+  background-image: url(/image/d.jpg);
+}
+#picture-e{
+  background-image: url(/image/e.jpg);
+}
+
+#picture-b,#picture-c,#picture-d,#picture-e{
+ display: none;
+}
+
 
 @media screen and (min-width: 600px) {
   #carousel {
