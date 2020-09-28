@@ -55,7 +55,6 @@ function updateCircle(e) {
     resetCircle();
     resetImg();
     x = arr.indexOf(e.target.id);
-    document.getElementById(`picture-${arr[x]}`).style.transform = "scale(1)";
     document.getElementById(`picture-${arr[x]}`).style.opacity = "1";
     e.target.style.background = "white";
   }
@@ -72,12 +71,10 @@ function resetImg() {
   let list = pictures.children;
   for (let i = 0; i < list.length; i++) {
     list[i].style.opacity = "0";
-    list[i].style.transform = "scale(1.1)";
   }
 }
 
 function updateImg() {
-  document.getElementById(`picture-${arr[x]}`).style.transform = "scale(1)";
   document.getElementById(`picture-${arr[x]}`).style.opacity = "1";
   document.getElementById(`${arr[x]}`).style.background = "white";
 }
