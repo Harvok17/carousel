@@ -52,8 +52,7 @@ function updateCircle(e) {
   ) {
     resetImgAndCircle();
     x = arr.indexOf(e.target.id);
-    document.getElementById(`picture-${arr[x]}`).style.opacity = "1";
-    e.target.style.background = "white";
+    updateImg();
   }
 }
 
