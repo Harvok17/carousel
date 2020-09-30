@@ -24,8 +24,7 @@ circles.addEventListener("click", updateCircle);
 //functions
 function rotate(e) {
   if (e.target === forward) {
-    resetCircle();
-    resetImg();
+    resetImgAndCircle();
     x += 1;
     if (x >= arr.length) {
       x = 0;
@@ -33,8 +32,7 @@ function rotate(e) {
     }
     updateImg();
   } else if (e.target === back) {
-    resetCircle();
-    resetImg();
+    resetImgAndCircle();
     x -= 1;
     if (x < 0) {
       x = arr.length - 1;
@@ -52,25 +50,17 @@ function updateCircle(e) {
     e.target.id === arr[3] ||
     e.target.id === arr[4]
   ) {
-    resetCircle();
-    resetImg();
+    resetImgAndCircle();
     x = arr.indexOf(e.target.id);
     document.getElementById(`picture-${arr[x]}`).style.opacity = "1";
     e.target.style.background = "white";
   }
 }
 
-function resetCircle() {
-  let list = circles.children;
-  for (let i = 0; i < list.length; i++) {
-    list[i].style.background = "gray";
-  }
-}
-
-function resetImg() {
-  let list = pictures.children;
-  for (let i = 0; i < list.length; i++) {
-    list[i].style.opacity = "0";
+function resetImgAndCircle() {
+  for (let i = 0; i < arr.length; i++) {
+    pictures.children[i].style.opacity = "0";
+    circles.children[i].style.background = "gray";
   }
 }
 
