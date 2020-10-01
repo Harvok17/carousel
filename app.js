@@ -1,69 +1,87 @@
 let x = 0;
-const arr = ["a", "b", "c", "d", "e"];
 const back = document.getElementById("back");
 const forward = document.getElementById("forward");
 const carousel = document.getElementById("carousel");
-const circles = document.querySelector(".circles");
-const pictures = document.querySelector(".pictures");
+const CIRCLES = document.querySelector(".circles");
+const PICTURES = document.querySelector(".pictures");
+const circle = CIRCLES.children;
+const picture = PICTURES.children;
+
+//Line up pictures next to each other
+const list = Array.from(PICTURES.children);
+const pictureWidth = list[0].getBoundingClientRect().width;
+const picturePosition = (list, index) => {
+  list.style.left = pictureWidth * index + "px";
+};
+list.forEach(picturePosition);
+
+//////////////////// EVENT LISTENERS ////////////////////
 
 carousel.addEventListener("click", rotate);
+CIRCLES.addEventListener("click", updateImgAndCircle);
+
 carousel.addEventListener("mouseout", function () {
   back.style.opacity = "0";
   forward.style.opacity = "0";
-  circles.style.opacity = "0";
+  CIRCLES.style.opacity = "0";
 });
-
 carousel.addEventListener("mouseover", function () {
   back.style.opacity = "1";
   forward.style.opacity = "1";
-  circles.style.opacity = "1";
+  CIRCLES.style.opacity = "1";
 });
 
-circles.addEventListener("click", updateCircle);
+//Prevent images from overlapping each other when resizing window
+window.addEventListener("resize", function () {
+  const list = Array.from(PICTURES.children);
+  const pictureWidth = list[x].getBoundingClientRect().width;
+  const picturePosition = (list, index) => {
+    list.style.left = pictureWidth * index + "px";
+  };
+  list.forEach(picturePosition);
+  PICTURES.style.transform = `translateX(-${list[x].style.left})`;
+  PICTURES.style.transition = "none";
+});
 
-//functions
+//////////////////// FUNCTIONS AND EVENT HANDLERS //////////////////////
 function rotate(e) {
   if (e.target === forward) {
-    resetImgAndCircle();
+    resetCircle();
     x += 1;
-    if (x >= arr.length) {
+    if (x >= list.length) {
       x = 0;
       updateImg();
     }
     updateImg();
   } else if (e.target === back) {
-    resetImgAndCircle();
+    resetCircle();
     x -= 1;
     if (x < 0) {
-      x = arr.length - 1;
+      x = list.length - 1;
       updateImg();
     }
     updateImg();
   }
 }
 
-function updateCircle(e) {
-  if (
-    e.target.id === arr[0] ||
-    e.target.id === arr[1] ||
-    e.target.id === arr[2] ||
-    e.target.id === arr[3] ||
-    e.target.id === arr[4]
-  ) {
-    resetImgAndCircle();
-    x = arr.indexOf(e.target.id);
-    updateImg();
+function updateImgAndCircle(e) {
+  for (let i = 0; i < list.length; i++) {
+    if (e.target === CIRCLES.children[i]) {
+      resetCircle();
+      x = i;
+      updateImg();
+    }
   }
 }
 
-function resetImgAndCircle() {
-  for (let i = 0; i < arr.length; i++) {
-    pictures.children[i].style.opacity = "0";
-    circles.children[i].style.background = "gray";
+function resetCircle() {
+  for (let i = 0; i < list.length; i++) {
+    circle[i].style.background = "gray";
   }
 }
 
 function updateImg() {
-  document.getElementById(`picture-${arr[x]}`).style.opacity = "1";
-  document.getElementById(`${arr[x]}`).style.background = "white";
+  PICTURES.style.transition = "transform 800ms ease";
+  PICTURES.style.transform = `translateX(-${list[x].style.left})`;
+  circle[x].style.background = "white";
 }
