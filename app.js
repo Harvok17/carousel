@@ -15,7 +15,7 @@ const picturePosition = (list, index) => {
 };
 list.forEach(picturePosition);
 
-//////////////////// EVENT LISTENERS ////////////////////
+// EVENT LISTENERS //
 
 carousel.addEventListener("click", rotate);
 CIRCLES.addEventListener("click", updateImgAndCircle);
@@ -43,7 +43,7 @@ window.addEventListener("resize", function () {
   PICTURES.style.transition = "none";
 });
 
-//////////////////// FUNCTIONS AND EVENT HANDLERS //////////////////////
+// FUNCTIONS AND EVENT HANDLERS //
 function rotate(e) {
   if (e.target === forward) {
     resetCircle();
