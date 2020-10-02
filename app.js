@@ -84,4 +84,8 @@ function updateImg() {
   PICTURES.style.transition = "transform 800ms ease";
   PICTURES.style.transform = `translateX(-${list[x].style.left})`;
   circle[x].style.background = "white";
+
+  //Transition options:
+  //PICTURES.style.transition = "1s cubic-bezier(1,-0.52,0,1.57)";
+  //PICTURES.style.transition = "1s cubic-bezier(0,-0.11,0,-0.37)";
 }

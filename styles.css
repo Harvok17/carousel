@@ -119,6 +119,14 @@ body {
   background-color: white;
 }
 
+#title {
+  color: rgb(192, 189, 189);
+  font-family: sans-serif;
+  font-size: 2.5rem;
+  text-align: center;
+  text-shadow: 2px 2.5px 2px #ffffff8e;
+}
+
 @media screen and (min-width: 600px) {
   #carousel {
     height: 48vmax;
